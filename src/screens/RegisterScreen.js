@@ -116,7 +116,7 @@ const RegisterScreen = ({ history }) => {
       <br />
       <button
         type="submit"
-        className="btn btn-raised"
+        className="btn btn-raised btn-block"
         disabled={!name || !email || password.length < 6 || !previewSource}
       >
         Register

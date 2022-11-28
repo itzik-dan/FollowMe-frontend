@@ -34,69 +34,74 @@ const Header = () => {
   };
 
   return (
-    <Menu
-      onClick={handleClick}
-      selectedKeys={[current]}
-      mode="horizontal"
-      theme="dark"
-    >
-      <Item key="home" icon={<FireFilled />}>
-        <Link to="/">
-          <strong>FollowMe</strong>
-        </Link>
-      </Item>
+    <div>
+      <Menu
+        onClick={handleClick}
+        defaultSelectedKeys={current}
+        mode="horizontal"
+        theme="dark"
+      >
+        <Item key="home" icon={<FireFilled />} style={{ flex: "1" }}>
+          <Link to="/">
+            <strong>FollowMe</strong>
+          </Link>
+        </Item>
 
-      {userInfo && (
-        <Fragment>
-          <SubMenu
-            key="SubMenu"
-            icon={<SettingOutlined />}
-            title={userInfo.name}
-            className="float-right"
-          >
-            <Item icon={<UserOutlined />}>
-              <Link to="/profile">Profile</Link>
+        {userInfo && (
+          <Fragment>
+            <Item key="search" className="float-right">
+              <span className="float-right p-1">
+                <SearchBox />
+              </span>
             </Item>
-            <Item icon={<LogoutOutlined />} onClick={logoutHandler}>
-              Logout
+            <Item key="create" icon={<PlusOutlined />} className="float-right">
+              <Link to="/create"> Create Post</Link>
             </Item>
-          </SubMenu>
-          <Item key="create" icon={<PlusOutlined />} className="float-right">
-            <Link to="/create">Create Post</Link>
-          </Item>
-          <Item key="list" className="float-right">
-            <Link to="/followingPosts">
-              <HeartOutlined />
-              Following
-            </Link>
-          </Item>
-          <Item key="users" className="float-right">
-            <Link to="/users">
-              <UsergroupAddOutlined />
-              Users
-            </Link>
-          </Item>
-          <span className="float-right p-1">
-            <SearchBox />
-          </span>
-        </Fragment>
-      )}
+            <Item key="list" className="float-right" icon={<HeartOutlined />}>
+              <Link to="/followingPosts"> Following</Link>
+            </Item>
+            <Item
+              key="users"
+              className="float-right"
+              icon={<UsergroupAddOutlined />}
+            >
+              <Link to="/users"> Users</Link>
+            </Item>
+            <SubMenu
+              key="SubMenu"
+              icon={<SettingOutlined />}
+              title={" " + userInfo.name}
+            >
+              <Item key="profile" icon={<UserOutlined />}>
+                <Link to="/profile">Profile</Link>
+              </Item>
+              <Item
+                key="logout"
+                icon={<LogoutOutlined />}
+                onClick={logoutHandler}
+              >
+                Logout
+              </Item>
+            </SubMenu>
+          </Fragment>
+        )}
 
-      {!userInfo && (
-        <Fragment>
-          <Item key="login" icon={<UserOutlined />} className="float-right">
-            <Link to="/login">Login</Link>
-          </Item>
-          <Item
-            key="register"
-            icon={<UserAddOutlined />}
-            className="float-right"
-          >
-            <Link to="/register">Register</Link>
-          </Item>
-        </Fragment>
-      )}
-    </Menu>
+        {!userInfo && (
+          <Fragment>
+            <Item key="login" icon={<UserOutlined />} className="float-right">
+              <Link to="/login">Login</Link>
+            </Item>
+            <Item
+              key="register"
+              icon={<UserAddOutlined />}
+              className="float-right"
+            >
+              <Link to="/register">Register</Link>
+            </Item>
+          </Fragment>
+        )}
+      </Menu>
+    </div>
   );
 };
 
