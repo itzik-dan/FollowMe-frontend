@@ -27,6 +27,7 @@ const SearchBox = () => {
         value={keyword}
         className="form-control"
         placeholder="Search User"
+		style={{color: "white"}}
       />
     </form>
   );
